@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Add Employee</title>
+	<!-- Bootstrap CSS -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Custom CSS for palette colors -->
+	<style>
+		body {
+			background-color: #f8f9fa;
+		}
+
+		.form-container {
+			background-color: #ffffff;
+			padding: 30px;
+
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container mt-5">
+		<div class="form-container">
+			<h1 class="text-center">Add Employee</h1>
+			<form th:action="@{/saveEmployee}" th:object="${employee}" method="POST">
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" class="form-control" id="name" th:field="*{name}">
+					<div th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}"></div>
+				</div>
+				<div class="form-group">
+					<label for="name">Department</label>
+					<input type="text" class="form-control" id="department" th:field="*{department}">
+					<div th:if="${#fields.hasErrors('department')}" class="text-danger" th:errors="*{department}"></div>
+				</div>
+				<div class="form-group">
+					<label for="address">Address</label>
+					<input type="text" class="form-control" id="address" th:field="*{address}">
+					<div th:if="${#fields.hasErrors('address')}" class="text-danger" th:errors="*{address}"></div>
+				</div>
+				<div class="form-group">
+					<label for="salary">Salary</label>
+					<input type="text" class="form-control" id="salary" th:field="*{salary}" inputmode="decimal"
+						pattern="[0-9]*[.,]?[0-9]*">
+					<div th:if="${#fields.hasErrors('salary')}" class="text-danger" th:errors="*{salary}"></div>
+				</div>
+				<div class="text-center">
+					<button type="submit" class="btn btn-outline-primary">Save Employee</button>
+					<a th:href="@{/ems2}" class="btn btn-outline-secondary">Cancel</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- Bootstrap JS and dependencies -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

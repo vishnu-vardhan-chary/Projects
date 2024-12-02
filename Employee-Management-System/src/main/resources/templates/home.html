@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="" th:href="@{/css/home.css}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">EMS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars custom-toggler-icon"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/ems2}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/addEmployee}">Add Employee</a>
+                </li>
+            </ul>
+            <!-- Search Form -->
+            <form name="frm" method="post" class="form-inline">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="search_value" name="search_value" placeholder="Search">
+                </div>
+                <div class="form-group mx-2">
+                    <select id="searchType" name="searchType" class="form-control">
+                        <option value="name">Name</option>
+                        <option value="address">Address</option>
+                        <option value="salary">Salary</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-outline-light" onClick="search()">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+							<th>Department</th>
+                            <th>Address</th>
+                            <th>Salary</th>
+                            <th>Edit Action</th>
+                            <th>Delete Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:if="${employees.size() == 0}">
+                            <td colspan="6" class="text-center">No more Employees!!!</td>
+                        </tr>
+                        <tr th:each="employee : ${employees}">
+                            <td th:text="${employee.id}"></td>
+                            <td th:text="${employee.name}"></td>
+							<td th:text="${employee.department}"></td>
+                            <td th:text="${employee.address}"></td>
+                            <td th:text="${employee.salary}"></td>
+                            <td>
+                                <a th:href="@{/editEmployee/{id}(id=${employee.id})}" 
+                                    class="btn btn-outline-primary">Edit</a>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-outline-danger" th:attr="onClick='confirmDelete(' + ${employee.id} + ')'">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Employee Management System. All rights reserved.</p>
+    </footer>
+	<script src="" th:src="@{javaScript/search.js}"></script>
+</body>
+</html>
