@@ -1,5 +1,5 @@
-# Projects
-Employee Management System
+
+#Employee Management System
 
 This is a Spring Boot application built to manage employees, leveraging Thymeleaf for templating and Bootstrap for frontend styling. It integrates with MySQL for data persistence and includes a robust search functionality.
 
