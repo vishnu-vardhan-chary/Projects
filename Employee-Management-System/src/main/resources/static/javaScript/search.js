@@ -1,17 +1,1 @@
-function search() {
-	var searchType = document.getElementById("searchType").value;
-	if (searchType === "name") {
-		document.frm.action = "searchByName";
-	} else if (searchType === "address") {
-		document.frm.action = "searchByAddress";
-	} else if (searchType === "salary") {
-		document.frm.action = "searchBySalary";
-	}
-	document.frm.submit();
-}
-
-function confirmDelete(employeeId) {
-	if (confirm("Are you sure you want to delete this employee?")) {
-		window.location.href = "/deleteEmployee/" + employeeId;
-	}
-}
+function search(){var e=document.getElementById("searchType").value;"name"===e?document.frm.action="searchByName":"address"===e?document.frm.action="searchByAddress":"salary"===e&&(document.frm.action="searchBySalary"),document.frm.submit()}function confirmDelete(e){confirm("Are you sure you want to delete this employee?")&&(window.location.href="/deleteEmployee/"+e)}
